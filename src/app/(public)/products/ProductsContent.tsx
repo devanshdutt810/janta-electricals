@@ -75,7 +75,7 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="px-6 pt-32 pb-24">
+    <div className="px-6 pt-24 pb-16">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-300 to-slate-300 bg-clip-text text-transparent text-center">
           Our Products
@@ -115,11 +115,11 @@ export default function ProductsPage() {
         {loading ? (
           <Loader />
         ) : products.length === 0 ? (
-          <p className="mt-12 text-center text-slate-900">
+          <p className="mt-8 text-center text-slate-900">
             No products found.
           </p>
         ) : (
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product) => (
               <Link
                 key={product.id}

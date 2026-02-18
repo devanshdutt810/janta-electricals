@@ -76,7 +76,7 @@ export default function ProductDetailPage() {
     );
 
   return (
-    <div className="px-6 pt-16 pb-24">
+    <div className="px-6 pt-12 pb-16">
       <div className="max-w-6xl mx-auto">
         <Link
           href="/products"
@@ -86,7 +86,7 @@ export default function ProductDetailPage() {
           Products
         </Link>
 
-        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Image Gallery */}
           <div>
             <div className="relative p-6 bg-black/20 backdrop-blur-sm border border-white/50 rounded-lg shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none">
@@ -104,7 +104,7 @@ export default function ProductDetailPage() {
             </div>
 
             {product.product_images?.length > 1 && (
-              <div className="mt-6 flex gap-4 flex-wrap">
+              <div className="mt-4 flex gap-3 flex-wrap">
                 {product.product_images.map((img) => (
                   <img
                     key={img.id}
@@ -135,11 +135,11 @@ export default function ProductDetailPage() {
               Product Type: {product.category?.name}
             </p>
 
-            <p className="mt-8 text-lg text-slate-300 leading-relaxed whitespace-pre-line">
+            <p className="mt-6 text-lg text-slate-300 leading-relaxed whitespace-pre-line">
               {product.description}
             </p>
 
-            <div className="mt-12 flex gap-6 flex-wrap">
+            <div className="mt-8 flex gap-4 flex-wrap">
               <a
                 href={`https://wa.me/918586836646?text=${encodeURIComponent(
                   `I would like to Buy ${product.name}.`

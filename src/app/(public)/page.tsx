@@ -53,7 +53,7 @@ export default function HomePage() {
 
   return (
     <div className="w-full">
-      <section className="pt-40 pb-32 px-6 text-center relative">
+      <section className="pt-28 pb-20 px-6 text-center relative">
         <div className="max-w-4xl mx-auto">
           <div className="inline-block px-6 py-3 mb-8 text-sm font-medium rounded-full text-slate-300 relative p-6 text-white bg-black/20 backdrop-blur-sm border border-white/50 rounded-full shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] hover:bg-white/30 transition-all duration-300 before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none block">
             Trusted Leaders Since 2010
@@ -86,13 +86,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="w-full py-24 px-6">
+      <section className="w-full py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-300 to-slate-300 bg-clip-text text-transparent text-center">
             Our Product Categories
           </h2>
 
-          <div className="mt-16">
+          <div className="mt-10">
             {loading ? (
               <Loader />
             ) : (
@@ -129,7 +129,7 @@ export default function HomePage() {
       </section>
 
       {/* <GlassSection> */}
-      <section className="w-full py-24 px-6">
+      <section className="w-full py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-300 to-slate-300 bg-clip-text text-transparent text-center">
             Why Choose Janta Electricals
@@ -172,7 +172,7 @@ export default function HomePage() {
       {/* </GlassSection> */}
 
       {/* <GlassSection> */}
-      <section className="w-full py-24 px-6">
+      <section className="w-full py-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-300 to-slate-300 bg-clip-text text-transparent">
             Reach Us

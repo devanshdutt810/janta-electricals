@@ -67,7 +67,7 @@ Message: ${formData.message}`;
   };
 
   return (
-    <div className="px-6 pt-32 pb-24">
+    <div className="px-6 pt-24 pb-16">
       <div className="max-w-6xl mx-auto">
         <div className="text-center max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-300 via-blue-300 to-slate-300 bg-clip-text text-transparent">
@@ -79,9 +79,9 @@ Message: ${formData.message}`;
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div className="space-y-10">
+          <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-slate-300">
                 Business Information
@@ -124,8 +124,8 @@ Message: ${formData.message}`;
           </div>
 
           {/* Inquiry Form */}
-          <div className="relative p-10 text-white bg-black/20 backdrop-blur-sm border border-white/50 rounded-lg shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="relative p-8 text-white bg-black/20 backdrop-blur-sm border border-white/50 rounded-lg shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="block text-sm font-medium text-slate-300">
                   Full Name
