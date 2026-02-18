@@ -1,0 +1,28 @@
+import "./globals.css";
+import { ReactNode } from "react";
+import { Open_Sans } from "next/font/google";
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+export const metadata = {
+  title: "Janta Electricals",
+  description: "Industrial-grade air coolers & genuine spare parts.",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className={`${openSans.className}`}>
+        {children}
+      </body>
+    </html>
+  );
+}
