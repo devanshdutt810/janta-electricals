@@ -122,11 +122,15 @@
 
   html {
     background-color: #000000;
+    min-height: 100%;
+    padding-top: env(safe-area-inset-top);
   }
 
   body {
     @apply text-foreground;
     background-color: transparent;
+    min-height: 100dvh;
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 

@@ -31,8 +31,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${openSans.className}`}>
-        {children}
+      <body className={`${openSans.className} min-h-screen bg-transparent text-white`}>
+        <div className="safe-area-container">
+          {children}
+        </div>
       </body>
     </html>
   );
