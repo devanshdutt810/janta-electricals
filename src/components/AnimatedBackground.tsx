@@ -46,8 +46,8 @@ export default function AnimatedBackground() {
   return (
     <div
       ref={vantaRef}
-      className="absolute top-0 left-0 w-full min-h-screen h-[100vh] -z-10"
-      style={{ minHeight: "100vh" }}
+      className="fixed top-0 left-0 w-full h-full min-h-[100vh] -z-10"
+      style={{ height: "100%", minHeight: "100vh" }}
     />
   );
 }
