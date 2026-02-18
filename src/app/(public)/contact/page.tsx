@@ -6,7 +6,6 @@ import Loader from "@/components/Loader";
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
-    company: "",
     phone: "",
     email: "",
     category: "coolers",
@@ -57,7 +56,6 @@ export default function ContactPage() {
 
     const message = `Hello, I would like to request a bulk quote.%0A%0A
 Name: ${formData.name}%0A
-Company: ${formData.company || "N/A"}%0A
 Phone: ${formData.phone}%0A
 Email: ${formData.email}%0A
 Category: ${formData.category}%0A
@@ -138,19 +136,6 @@ Message: ${formData.message}`;
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full px-4 py-3 rounded-xl border border-white/30 bg-white/5 backdrop-blur-sm text-white focus:outline-none focus:ring-0 focus:border-cyan-300/80 focus:shadow-[0_0_20px_rgba(0,255,255,0.9),0_0_40px_rgba(0,255,255,0.4)]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-300">
-                  Company Name
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
                   className="mt-2 w-full px-4 py-3 rounded-xl border border-white/30 bg-white/5 backdrop-blur-sm text-white focus:outline-none focus:ring-0 focus:border-cyan-300/80 focus:shadow-[0_0_20px_rgba(0,255,255,0.9),0_0_40px_rgba(0,255,255,0.4)]"
                 />
               </div>

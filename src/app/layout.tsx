@@ -11,6 +11,17 @@ const openSans = Open_Sans({
 export const metadata = {
   title: "Janta Electricals",
   description: "Industrial-grade air coolers & genuine spare parts.",
+
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
+
+  themeColor: "#000000",
+
+  appleWebApp: {
+    capable: false,
+  },
 };
 
 export default function RootLayout({
