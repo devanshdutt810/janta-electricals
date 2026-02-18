@@ -77,17 +77,17 @@ export default function ProductsPage() {
   return (
     <div className="px-6 pt-32 pb-24">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-300 to-slate-400 bg-clip-text text-transparent text-center">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-300 to-slate-300 bg-clip-text text-transparent text-center">
           Our Products
         </h1>
 
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Link
             href="/products"
-            className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+            className={`relative inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg border border-white/50 backdrop-blur-sm shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] transition-all duration-300 before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none ${
               !selectedCategory
-                ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-2xl hover:scale-[1.03]"
-                : "bg-white/20 backdrop-blur-xl border border-white/40 text-slate-300 hover:bg-white/30"
+                ? "bg-green-600/50 text-white shadow-[0_0_30px_rgba(0,255,255,0.9),0_0_60px_rgba(0,255,255,0.4)] ring-1 ring-cyan-300/80"
+                : "bg-white/10 text-slate-300 hover:bg-cyan-400/10 hover:shadow-[0_0_25px_rgba(0,255,255,0.7)]"
             }`}
           >
             All
@@ -97,10 +97,10 @@ export default function ProductsPage() {
             <Link
               key={cat.id}
               href={`/products?category=${cat.slug}`}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              className={`relative inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg border border-white/50 backdrop-blur-sm shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] transition-all duration-300 before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none ${
                 selectedCategory === cat.slug
-                  ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-2xl hover:scale-[1.03]"
-                  : "bg-white/20 backdrop-blur-xl border border-white/40 text-slate-300 hover:bg-white/30"
+                  ? "bg-green-600/50 text-white shadow-[0_0_30px_rgba(0,255,255,0.9),0_0_60px_rgba(0,255,255,0.4)] ring-1 ring-cyan-300/80"
+                  : "bg-white/10 text-slate-300 hover:bg-cyan-400/10 hover:shadow-[0_0_25px_rgba(0,255,255,0.7)]"
               }`}
             >
               {cat.name}
@@ -124,7 +124,7 @@ export default function ProductsPage() {
               <Link
                 key={product.id}
                 href={`/products/${product.slug}`}
-                className="p-8 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition"
+                className="relative p-8 text-white bg-black/20 backdrop-blur-sm border border-white/50 rounded-lg shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] hover:bg-white/30 hover:-translate-y-1 transition-all duration-300 before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none block"
               >
                 {product.imageUrl ? (
                   <img
@@ -138,13 +138,13 @@ export default function ProductsPage() {
                   </div>
                 )}
 
-                <h3 className="text-lg font-semibold text-slate-900">
+                <h3 className="text-lg font-semibold">
                   {product.name}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">
+                <p className="mt-2 text-sm opacity-90">
                   ₹ {product.price}
                 </p>
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm opacity-70">
                   {product.category?.name}
                 </p>
               </Link>

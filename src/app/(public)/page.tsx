@@ -55,7 +55,7 @@ export default function HomePage() {
     <div className="w-full">
       <section className="pt-40 pb-32 px-6 text-center relative">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-block px-6 py-3 mb-8 text-sm font-medium rounded-full glass text-slate-300">
+          <div className="inline-block px-6 py-3 mb-8 text-sm font-medium rounded-full text-slate-300 relative p-6 text-white bg-black/20 backdrop-blur-sm border border-white/50 rounded-full shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] hover:bg-white/30 transition-all duration-300 before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none block">
             Trusted Leaders Since 2010
           </div>
 
@@ -86,9 +86,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <GlassSection>
+      <section className="w-full py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-300 to-slate-300 bg-clip-text text-transparent text-center">
             Our Product Categories
           </h2>
 
@@ -101,25 +101,23 @@ export default function HomePage() {
                   <Link
                     key={category.id}
                     href={`/products?category=${category.slug}`}
-                    className="glass group p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:scale-[1.03] block"
+                    className="relative p-6 text-white bg-black/20 backdrop-blur-sm border border-white/50 rounded-lg shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] hover:bg-white/30 transition-all duration-300 before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none block"
                   >
                     {category.imageUrl ? (
                       <img
                         src={category.imageUrl}
                         alt={category.name}
-                        className="h-40 w-full object-cover rounded-lg mb-6 transition-transform duration-500 group-hover:scale-105"
+                        className="h-32 w-full object-cover rounded-md mb-4"
                       />
                     ) : (
-                      <div className="h-40 bg-slate-100 rounded-lg mb-6 flex items-center justify-center text-slate-400 text-sm">
+                      <div className="h-32 bg-white/10 rounded-md mb-4 flex items-center justify-center text-white/70 text-sm">
                         No Image
                       </div>
                     )}
 
-                    <h3 className="text-lg font-semibold text-slate-900">
-                      {category.name}
-                    </h3>
+                    <h3 className="text-lg font-semibold">{category.name}</h3>
 
-                    <p className="mt-3 text-sm text-slate-600">
+                    <p className="text-sm opacity-90 mt-2">
                       Premium quality {category.name.toLowerCase()} built for durability and performance.
                     </p>
                   </Link>
@@ -128,43 +126,59 @@ export default function HomePage() {
             )}
           </div>
         </div>
-      </GlassSection>
+      </section>
 
-      <GlassSection>
+      {/* <GlassSection> */}
+      <section className="w-full py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-300 to-slate-300 bg-clip-text text-transparent text-center">
             Why Choose Janta Electricals
           </h2>
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
-              "Bulk Manufacturing Capability",
-              "Strict Quality Control",
-              "Reliable Distribution Network",
+              {
+                title: "Bulk Manufacturing Capability",
+                description:
+                  "High-capacity production infrastructure to fulfill large distributor and industrial bulk orders efficiently and consistently.",
+              },
+              {
+                title: "Strict Quality Control",
+                description:
+                  "Every product undergoes rigorous inspection and testing to ensure long-term durability, safety, and reliable performance.",
+              },
+              {
+                title: "Reliable Distribution Network",
+                description:
+                  "Strong supply chain and logistics network ensuring fast, dependable delivery across retailers, dealers, and industrial clients.",
+              },
             ].map((item) => (
               <div
-                key={item}
-                className="glass-strong p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                key={item.title}
+                className="relative p-6 text-white bg-black/20 backdrop-blur-sm border border-white/50 rounded-lg shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] hover:bg-white/30 hover:-translate-y-2 transition-all duration-300 before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none"
               >
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {item}
+                <h3 className="text-lg font-semibold">
+                  {item.title}
                 </h3>
-                <p className="mt-3 text-sm text-slate-600">
-                  Built to support large-scale supply with consistency and long-term reliability.
+
+                <p className="text-sm opacity-90 mt-2">
+                  {item.description}
                 </p>
               </div>
             ))}
           </div>
         </div>
-      </GlassSection>
+      </section>
+      {/* </GlassSection> */}
 
-      <GlassSection>
+      {/* <GlassSection> */}
+      <section className="w-full py-24 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-300 to-slate-300 bg-clip-text text-transparent">
             Reach Us
           </h2>
 
-          <p className="mt-6 text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Mfg. & Supplier : Cooler, Spare Parts & All Kinds of Spare
             <br />
             Shop No. 140-141, Kamla Market, New Delhi-110002
@@ -187,13 +201,14 @@ export default function HomePage() {
               href="https://maps.app.goo.gl/9SVupmQUAkoiTvLcA"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg hover:shadow-2xl hover:scale-[1.03] hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+              className="relative inline-flex items-center justify-center px-8 py-4 text-white text-sm font-medium rounded-lg bg-white/5 border border-white/50 backdrop-blur-sm shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] hover:bg-white/30 hover:-translate-y-0.5 transition-all duration-300 before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none"
             >
               Open in Maps
             </a>
           </div>
         </div>
-      </GlassSection>
+      </section>
+      {/* </GlassSection> */}
     </div>
   );
 }

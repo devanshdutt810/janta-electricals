@@ -126,10 +126,10 @@ Message: ${formData.message}`;
           </div>
 
           {/* Inquiry Form */}
-          <div className="bg-white/70 backdrop-blur-md rounded-3xl shadow-lg border border-white/40 p-10">
+          <div className="relative p-10 text-white bg-black/20 backdrop-blur-sm border border-white/50 rounded-lg shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700">
+                <label className="block text-sm font-medium text-slate-300">
                   Full Name
                 </label>
                 <input
@@ -138,12 +138,12 @@ Message: ${formData.message}`;
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full px-4 py-3 rounded-xl border border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900"
+                  className="mt-2 w-full px-4 py-3 rounded-xl border border-white/30 bg-white/5 backdrop-blur-sm text-white focus:outline-none focus:ring-0 focus:border-cyan-300/80 focus:shadow-[0_0_20px_rgba(0,255,255,0.9),0_0_40px_rgba(0,255,255,0.4)]"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700">
+                <label className="block text-sm font-medium text-slate-300">
                   Company Name
                 </label>
                 <input
@@ -151,13 +151,13 @@ Message: ${formData.message}`;
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="mt-2 w-full px-4 py-3 rounded-xl border border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900"
+                  className="mt-2 w-full px-4 py-3 rounded-xl border border-white/30 bg-white/5 backdrop-blur-sm text-white focus:outline-none focus:ring-0 focus:border-cyan-300/80 focus:shadow-[0_0_20px_rgba(0,255,255,0.9),0_0_40px_rgba(0,255,255,0.4)]"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700">
+                  <label className="block text-sm font-medium text-slate-300">
                     Phone
                   </label>
                   <input
@@ -166,11 +166,11 @@ Message: ${formData.message}`;
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="mt-2 w-full px-4 py-3 rounded-xl border border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900"
+                    className="mt-2 w-full px-4 py-3 rounded-xl border border-white/30 bg-white/5 backdrop-blur-sm text-white focus:outline-none focus:ring-0 focus:border-cyan-300/80 focus:shadow-[0_0_20px_rgba(0,255,255,0.9),0_0_40px_rgba(0,255,255,0.4)]"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700">
+                  <label className="block text-sm font-medium text-slate-300">
                     Email
                   </label>
                   <input
@@ -179,13 +179,13 @@ Message: ${formData.message}`;
                     value={formData.email}
                     onChange={handleChange}
                     // required
-                    className="mt-2 w-full px-4 py-3 rounded-xl border border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900"
+                    className="mt-2 w-full px-4 py-3 rounded-xl border border-white/30 bg-white/5 backdrop-blur-sm text-white focus:outline-none focus:ring-0 focus:border-cyan-300/80 focus:shadow-[0_0_20px_rgba(0,255,255,0.9),0_0_40px_rgba(0,255,255,0.4)]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700">
+                <label className="block text-sm font-medium text-slate-300">
                   Product Category
                 </label>
                 <select
@@ -193,7 +193,7 @@ Message: ${formData.message}`;
                   value={formData.category}
                   onChange={handleChange}
                   disabled={loading}
-                  className="mt-2 w-full px-4 py-3 rounded-xl border border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 disabled:opacity-50"
+                  className="mt-2 w-full px-4 py-3 rounded-xl border border-white/30 bg-white/5 backdrop-blur-sm text-white focus:outline-none focus:ring-0 focus:border-cyan-300/80 focus:shadow-[0_0_20px_rgba(0,255,255,0.9),0_0_40px_rgba(0,255,255,0.4)] disabled:opacity-50"
                 >
                   {loading ? (
                     <option>Loading categories...</option>
@@ -208,7 +208,7 @@ Message: ${formData.message}`;
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700">
+                <label className="block text-sm font-medium text-slate-300">
                   Message / Requirements
                 </label>
                 <textarea
@@ -217,13 +217,13 @@ Message: ${formData.message}`;
                   onChange={handleChange}
                   rows={4}
                   required
-                  className="mt-2 w-full px-4 py-3 rounded-xl border border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900"
+                  className="mt-2 w-full px-4 py-3 rounded-xl border border-white/30 bg-white/5 backdrop-blur-sm text-white focus:outline-none focus:ring-0 focus:border-cyan-300/80 focus:shadow-[0_0_20px_rgba(0,255,255,0.9),0_0_40px_rgba(0,255,255,0.4)]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg hover:shadow-2xl hover:scale-[1.02] hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+                className="relative w-full inline-flex items-center justify-center px-6 py-4 text-white text-sm font-medium rounded-lg bg-cyan-400/20 border border-cyan-300/80 backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,255,0.9),0_0_60px_rgba(0,255,255,0.4)] hover:bg-cyan-400/30 hover:shadow-[0_0_40px_rgba(0,255,255,1),0_0_80px_rgba(0,255,255,0.5)] transition-all duration-300 before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none"
               >
                 Submit Inquiry
               </button>
