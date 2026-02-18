@@ -119,11 +119,14 @@
     @apply border-border outline-ring/50;
     @apply border-border outline-ring/50;
   }
-  html, body {
-    /* background-color: #000000; */
+
+  html {
+    background-color: #000000;
   }
+
   body {
     @apply text-foreground;
+    background-color: transparent;
   }
 }
 
