@@ -44,9 +44,10 @@ export default function AnimatedBackground() {
   }, []);
 
   return (
-  <div
-    ref={vantaRef}
-    className="absolute top-0 left-0 w-full h-full -z-10"
-  />
-);
+    <div
+      ref={vantaRef}
+      className="absolute top-0 left-0 w-full min-h-screen h-[100vh] -z-10"
+      style={{ minHeight: "100vh" }}
+    />
+  );
 }
