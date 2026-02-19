@@ -21,6 +21,8 @@ export default function AdminLoginPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ password }),
+        credentials: "include",
+        cache: "no-store",
       });
 
       const data = await res.json();
@@ -31,7 +33,7 @@ export default function AdminLoginPage() {
         return;
       }
 
-      router.replace("/admin/dashboard");
+      window.location.href = "/admin/dashboard";
     } catch (err) {
       setError("Something went wrong");
       setLoading(false);
