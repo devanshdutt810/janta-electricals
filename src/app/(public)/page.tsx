@@ -186,7 +186,7 @@ export default function HomePage() {
 
           <div className="mt-12 rounded-2xl overflow-hidden shadow-xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3500.3027153523394!2d77.19766307550256!3d28.680589975638526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjjCsDQwJzUwLjEiTiA3N8KwMTInMDAuOSJF!5e0!3m2!1sen!2sin!4v1771069636107!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3501.5084043839825!2d77.2252713!3d28.644492200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjjCsDM4JzQwLjIiTiA3N8KwMTMnMzEuMCJF!5e0!3m2!1sen!2sin!4v1771933800970!5m2!1sen!2sin"
               width="100%"
               height="450"
               style={{ border: 0 }}
