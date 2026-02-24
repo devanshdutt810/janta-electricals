@@ -30,6 +30,8 @@ export default function EditProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState("");
 
   const [formData, setFormData] = useState({
@@ -103,7 +105,10 @@ export default function EditProductPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (saving) return; // prevent re-submit
     setError("");
+    setSaving(true);
+    setUploadProgress(0);
 
     try {
       const updateRes = await fetch(`/api/admin/products/${productId}`, {
@@ -127,6 +132,8 @@ export default function EditProductPage() {
       }
 
       // Upload new images
+      let completed = 0;
+
       for (const file of newImages) {
         const form = new FormData();
         form.append("file", file);
@@ -150,11 +157,16 @@ export default function EditProductPage() {
             imageUrl: uploadData.url,
           }),
         });
+
+        completed++;
+        setUploadProgress(Math.round((completed / newImages.length) * 100));
       }
 
       router.push("/admin/products");
     } catch (err) {
       setError("Something went wrong");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -178,6 +190,7 @@ export default function EditProductPage() {
       <h1 className="text-2xl font-semibold">Edit Product</h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
+        <fieldset disabled={saving} className={saving ? "opacity-70" : ""}>
         <div>
           <label className="block text-sm font-medium">Name</label>
           <input
@@ -260,6 +273,7 @@ export default function EditProductPage() {
               type="file"
               multiple
               accept="image/*"
+              disabled={saving}
               onChange={handleNewImages}
               className="hidden"
             />
@@ -270,6 +284,20 @@ export default function EditProductPage() {
               {newImages.length} file(s) selected
             </p>
           )}
+
+          {saving && newImages.length > 0 && (
+            <div className="mt-4">
+              <div className="h-2 bg-slate-200 rounded">
+                <div
+                  className="h-2 bg-slate-900 rounded transition-all"
+                  style={{ width: `${uploadProgress}%` }}
+                />
+              </div>
+              <p className="text-xs text-slate-600 mt-1">
+                Uploading images... {uploadProgress}%
+              </p>
+            </div>
+          )}
         </div>
 
         {error && <p className="text-red-600 text-sm">{error}</p>}
@@ -277,18 +305,25 @@ export default function EditProductPage() {
         <div className="flex gap-3 pt-4">
           <button
             type="submit"
-            className="flex-1 bg-slate-900 text-white py-3 rounded-xl"
+            disabled={saving}
+            className="flex-1 bg-slate-900 text-white py-3 rounded-xl disabled:opacity-60"
           >
-            Update
+            {saving
+              ? newImages.length > 0
+                ? `Uploading ${uploadProgress}%`
+                : "Updating..."
+              : "Update"}
           </button>
           <button
             type="button"
+            disabled={saving}
             onClick={() => router.back()}
-            className="flex-1 border py-3 rounded-xl"
+            className="flex-1 border py-3 rounded-xl disabled:opacity-60"
           >
             Cancel
           </button>
         </div>
+        </fieldset>
       </form>
     </div>
   );

@@ -12,6 +12,15 @@ export const metadata = {
   title: "Janta Electricals",
   description: "Industrial-grade air coolers & genuine spare parts.",
 
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.ico" }
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+
   viewport: {
     width: "device-width",
     initialScale: 1,

@@ -14,6 +14,8 @@ export default function AdminCategoriesPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const [actionId, setActionId] = useState<string | null>(null);
+
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState("");
 
@@ -36,6 +38,7 @@ export default function AdminCategoriesPage() {
   };
 
   const addCategory = async () => {
+    if (loading) return;
     if (!newCategory.trim()) return;
 
     setLoading(true);
@@ -53,22 +56,24 @@ export default function AdminCategoriesPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Failed to add category");
-        setLoading(false);
-        return;
+        throw new Error(data.error || "Failed to add category");
       }
 
       setNewCategory("");
       await fetchCategories();
-    } catch (err) {
-      setError("Something went wrong");
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const deleteCategory = async (id: string) => {
+    if (actionId) return;
     if (!confirm("Are you sure you want to delete this category?")) return;
+
+    setActionId(id);
+    setError("");
 
     try {
       const res = await fetch(`/api/admin/categories?id=${id}`, {
@@ -77,18 +82,23 @@ export default function AdminCategoriesPage() {
 
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error || "Failed to delete category");
-        return;
+        throw new Error(data.error || "Failed to delete category");
       }
 
       await fetchCategories();
-    } catch (err) {
-      setError("Something went wrong");
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setActionId(null);
     }
   };
 
   const updateCategory = async (id: string) => {
+    if (actionId) return;
     if (!editingName.trim()) return;
+
+    setActionId(id);
+    setError("");
 
     try {
       const res = await fetch("/api/admin/categories", {
@@ -102,15 +112,16 @@ export default function AdminCategoriesPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Failed to update category");
-        return;
+        throw new Error(data.error || "Failed to update category");
       }
 
       setEditingId(null);
       setEditingName("");
       await fetchCategories();
-    } catch (err) {
-      setError("Something went wrong");
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setActionId(null);
     }
   };
 
@@ -159,6 +170,7 @@ export default function AdminCategoriesPage() {
                 />
                 <button
                   onClick={() => updateCategory(category.id)}
+                  disabled={actionId !== null}
                   className="text-sm text-green-600 font-medium"
                 >
                   Save
@@ -168,6 +180,7 @@ export default function AdminCategoriesPage() {
                     setEditingId(null);
                     setEditingName("");
                   }}
+                  disabled={actionId !== null}
                   className="text-sm text-slate-500 font-medium"
                 >
                   Cancel
@@ -182,12 +195,14 @@ export default function AdminCategoriesPage() {
                       setEditingId(category.id);
                       setEditingName(category.name);
                     }}
+                    disabled={actionId !== null}
                     className="text-sm text-blue-600 hover:text-blue-700 font-medium"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => deleteCategory(category.id)}
+                    disabled={actionId !== null}
                     className="text-sm text-red-600 hover:text-red-700 font-medium"
                   >
                     Delete

@@ -17,6 +17,17 @@ export default function ChangePasswordPage() {
     e.preventDefault();
     setError("");
     setMessage("");
+    if (loading) return; // prevent re-submit
+
+    if (!currentPassword.trim()) {
+      setError("Current password is required.");
+      return;
+    }
+
+    if (newPassword.length < 4) {
+      setError("New password must be at least 4 characters.");
+      return;
+    }
 
     if (newPassword !== confirmPassword) {
       setError("New passwords do not match.");
@@ -37,9 +48,7 @@ export default function ChangePasswordPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Failed to update password");
-        setLoading(false);
-        return;
+        throw new Error(data.error || "Failed to update password");
       }
 
       setMessage("Password updated successfully. Please log in again.");
@@ -48,8 +57,9 @@ export default function ChangePasswordPage() {
       setTimeout(() => {
         router.replace("/admin/login");
       }, 1200);
-    } catch (err) {
-      setError("Something went wrong");
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    } finally {
       setLoading(false);
     }
   };
@@ -59,6 +69,7 @@ export default function ChangePasswordPage() {
       <h1 className="text-2xl font-semibold">Change Password</h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
+        <fieldset disabled={loading} className={loading ? "opacity-70" : ""}>
         <div>
           <label className="block text-sm font-medium text-slate-700">
             Current Password
@@ -109,6 +120,7 @@ export default function ChangePasswordPage() {
         >
           {loading ? "Updating..." : "Update Password"}
         </button>
+        </fieldset>
       </form>
     </div>
   );

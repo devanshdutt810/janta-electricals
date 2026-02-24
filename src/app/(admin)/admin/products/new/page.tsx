@@ -25,10 +25,18 @@ export default function AddProductPage() {
 
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   useEffect(() => {
     fetchCategories();
   }, []);
+
+// Cleanup preview URLs
+  useEffect(() => {
+    return () => {
+      imagePreviews.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [imagePreviews]);
 
   const fetchCategories = async () => {
     try {
@@ -69,6 +77,14 @@ export default function AddProductPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    if (loading) return; // prevent double submit
+
+    if (!formData.name.trim()) {
+      setError("Product name is required.");
+      return;
+    }
+
+    setUploadProgress(0);
 
     if (!formData.categoryId) {
       setError("Please select a category.");
@@ -95,14 +111,14 @@ export default function AddProductPage() {
       const productData = await productRes.json();
 
       if (!productRes.ok) {
-        setError(productData.error || "Failed to create product");
-        setLoading(false);
-        return;
+        throw new Error(productData.error || "Failed to create product");
       }
 
       const productId = productData.product.id;
 
       // 2️⃣ Upload images (if any)
+      let completed = 0;
+
       for (const file of imageFiles) {
         const form = new FormData();
         form.append("file", file);
@@ -116,7 +132,6 @@ export default function AddProductPage() {
 
         if (!uploadRes.ok) continue;
 
-        // 3️⃣ Save image URL in product_images table
         await fetch("/api/admin/products/images", {
           method: "POST",
           headers: {
@@ -127,14 +142,17 @@ export default function AddProductPage() {
             imageUrl: uploadData.url,
           }),
         });
+
+        completed++;
+        setUploadProgress(Math.round((completed / imageFiles.length) * 100));
       }
 
       router.push("/admin/products");
-    } catch (err) {
-      setError("Something went wrong");
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -142,6 +160,7 @@ export default function AddProductPage() {
       <h1 className="text-2xl font-semibold">Add Product</h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
+        <fieldset disabled={loading} className={loading ? "opacity-70" : ""}>
         <div>
           <label className="block text-sm font-medium text-slate-700">
             Product Name
@@ -217,6 +236,7 @@ export default function AddProductPage() {
               type="file"
               accept="image/*"
               multiple
+              disabled={loading}
               onChange={handleImageChange}
               className="hidden"
             />
@@ -234,6 +254,19 @@ export default function AddProductPage() {
               ))}
             </div>
           )}
+          {loading && (
+            <div className="mt-4">
+              <div className="h-2 bg-slate-200 rounded">
+                <div
+                  className="h-2 bg-slate-900 rounded transition-all"
+                  style={{ width: `${uploadProgress}%` }}
+                />
+              </div>
+              <p className="text-xs text-slate-600 mt-1">
+                Uploading images... {uploadProgress}%
+              </p>
+            </div>
+          )}
         </div>
 
         {error && <p className="text-sm text-red-600">{error}</p>}
@@ -244,17 +277,23 @@ export default function AddProductPage() {
             disabled={loading}
             className="flex-1 bg-slate-900 text-white py-3 rounded-xl font-medium active:scale-[0.98] transition disabled:opacity-60"
           >
-            {loading ? "Saving..." : "Save Product"}
+            {loading
+              ? imageFiles.length > 0
+                ? `Uploading ${uploadProgress}%`
+                : "Saving..."
+              : "Save Product"}
           </button>
 
           <button
             type="button"
+            disabled={loading}
             onClick={() => router.back()}
-            className="flex-1 border border-slate-300 py-3 rounded-xl font-medium active:scale-[0.98] transition"
+            className="flex-1 border border-slate-300 py-3 rounded-xl font-medium active:scale-[0.98] transition disabled:opacity-60"
           >
             Cancel
           </button>
         </div>
+        </fieldset>
       </form>
     </div>
   );
