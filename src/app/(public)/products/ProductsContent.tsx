@@ -128,7 +128,9 @@ export default function ProductsPage() {
               >
                 {product.imageUrl ? (
                   <img
-                    src={product.imageUrl}
+                    src={`/api/public/image?path=${encodeURIComponent(
+                      product.imageUrl.split("/products/")[1]
+                    )}`}
                     alt={product.name}
                     className="h-40 w-full object-cover rounded-lg mb-6"
                   />
