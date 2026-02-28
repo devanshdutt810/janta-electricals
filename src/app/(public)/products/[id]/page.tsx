@@ -92,9 +92,7 @@ export default function ProductDetailPage() {
             <div className="relative p-6 bg-black/20 backdrop-blur-sm border border-white/50 rounded-lg shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-70 before:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-gradient-to-tl after:from-white/30 after:via-transparent after:to-transparent after:opacity-50 after:pointer-events-none">
               {activeImage ? (
                 <img
-                  src={`/api/public/image?path=${encodeURIComponent(
-                    activeImage?.split("/products/")[1] || ""
-                  )}`}
+                  src={`/api/public/image?path=${encodeURIComponent(activeImage || "")}`}
                   alt={product.name}
                   className="w-full h-96 object-contain bg-white rounded-xl"
                 />
@@ -110,9 +108,7 @@ export default function ProductDetailPage() {
                 {product.product_images.map((img) => (
                   <img
                     key={img.id}
-                    src={`/api/public/image?path=${encodeURIComponent(
-                      img.image_url.split("/products/")[1]
-                    )}`}
+                    src={`/api/public/image?path=${encodeURIComponent(img.image_url)}`}
                     onClick={() => setActiveImage(img.image_url)}
                     className={`w-24 h-24 object-cover rounded-lg cursor-pointer border ${
                       activeImage === img.image_url
