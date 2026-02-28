@@ -247,7 +247,7 @@ export default function EditProductPage() {
             {product.product_images.map((img) => (
               <div key={img.id} className="relative">
                 <img
-                  src={img.image_url}
+                  src={`/api/public/image?path=${encodeURIComponent(img.image_url)}`}
                   className="w-full h-40 object-cover rounded-xl border"
                 />
                 <button

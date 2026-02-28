@@ -91,7 +91,7 @@ export default function AdminProductsPage() {
                 <div className="flex gap-4">
                   {product.imageUrl ? (
                     <img
-                      src={product.imageUrl}
+                      src={`/api/public/image?path=${encodeURIComponent(product.imageUrl)}`}
                       alt={product.name}
                       className="w-20 h-20 object-cover rounded-lg border border-slate-200"
                     />
