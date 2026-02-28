@@ -105,7 +105,7 @@ export default function HomePage() {
                   >
                     {category.imageUrl ? (
                       <img
-                        src={category.imageUrl}
+                        src={`/api/public/image?path=${encodeURIComponent(category.imageUrl)}`}
                         alt={category.name}
                         className="h-32 w-full object-cover rounded-md mb-4"
                       />
